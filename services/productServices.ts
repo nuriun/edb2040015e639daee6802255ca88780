@@ -45,7 +45,11 @@ export async function searchProducts(
     const response: Product[] = await getProducts();
 
     const result = response.filter((p) =>
-        query.split(' ').every((word) => p.handle.includes(word)),
+        query
+            .split(' ')
+            .every((word) =>
+                p.handle.toLocaleLowerCase().includes(word.toLocaleLowerCase()),
+            ),
     );
     const page_count = result.length < 10 ? 1 : Math.ceil(result.length / 10);
 
