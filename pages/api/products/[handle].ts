@@ -1,4 +1,4 @@
-import { getProducts } from '@/services/productServices';
+import { getProduct, getProducts } from '@/services/productServices';
 import { Product } from 'interfaces/Product';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextRequest, NextResponse } from 'next/server';
@@ -20,9 +20,7 @@ export default async function handle(
             return;
         }
 
-        const response: Product[] = await getProducts();
-
-        const product = response.find((p) => p.handle === handle);
+        const product = getProduct(handle);
 
         if (!product) {
             res.status(404).end();

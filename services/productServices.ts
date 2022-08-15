@@ -22,7 +22,7 @@ export async function getProducts(): Promise<Product[]> {
             },
         };
     } else {
-        url = `/api/${GET_PRODUCTS_URL_PATH}`;
+        url = `/api${GET_PRODUCTS_URL_PATH}`;
     }
 
     var { products } = (await axios.get(url, options)).data;
@@ -34,22 +34,42 @@ export async function searchProducts(
     query: string,
     page: number,
 ): Promise<SearchProductResponse> {
-    const response: SearchProductResponse = (
-        await http.get(
-            `${SEARCH_PRODUCTS_URL_PATH}?query=${query}&page=${page || 1}`,
-        )
-    ).data;
+    // const response: SearchProductResponse = (
+    //     await http.get(
+    //         `${SEARCH_PRODUCTS_URL_PATH}?query=${query}&page=${page || 1}`,
+    //     )
+    // ).data;
 
-    return response;
+    let requestPage = page;
+
+    const response: Product[] = await getProducts();
+
+    const result = response.filter((p) =>
+        query.split(' ').every((word) => p.handle.includes(word)),
+    );
+    const page_count = result.length < 10 ? 1 : Math.ceil(result.length / 10);
+
+    if (requestPage > page_count) {
+        requestPage = page_count - 1;
+    } else if (requestPage < 0) {
+        requestPage = 0;
+    }
+
+    var start = (requestPage - 1) * 10;
+    var end = start + 10;
+
+    return {
+        products: result.slice(start, end),
+        page_count,
+        total_count: result.length,
+        current_page: requestPage,
+    };
 }
 
 export async function getProduct(handle: string): Promise<Product> {
-    let response;
-    try {
-        response = await http.get(`${GET_PRODUCTS_URL_PATH}/${handle}`);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
+    const response: Product[] = await getProducts();
+
+    const product = response.find((p) => p.handle === handle);
+
+    return product;
 }

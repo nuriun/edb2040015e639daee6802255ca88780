@@ -12,6 +12,7 @@
     "classnames": "^2.3.1",
     "express-http-proxy": "^1.6.3",
     "http-proxy-middleware": "^2.0.6",
+    "lru-cache": "^7.13.2",
     "next": "latest",
     "next-http-proxy-middleware": "^1.2.4",
     "normalize.css": "^8.0.1",

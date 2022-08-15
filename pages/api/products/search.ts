@@ -1,4 +1,4 @@
-import { getProducts } from '@/services/productServices';
+import { getProducts, searchProducts } from '@/services/productServices';
 import { Product } from 'interfaces/Product';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextRequest, NextResponse } from 'next/server';
@@ -25,32 +25,9 @@ export default async function handle(
             return;
         }
 
-        let requestPage = pageString ? parseInt(pageString) : 0;
+        var respones = await searchProducts(query, parseInt(pageString || '1'));
 
-        const response: Product[] = await getProducts();
-
-
-        const result = response.filter((p) =>
-            query.split(' ').every((word) => p.handle.includes(word)),
-        );
-        const page_count =
-            result.length < 10 ? 1 : Math.ceil(result.length / 10);
-
-        if (requestPage > page_count) {
-            requestPage = page_count - 1;
-        } else if (requestPage < 0) {
-            requestPage = 0;
-        }
-
-        var start = (requestPage - 1) * 10;
-        var end = start + 10;
-
-        res.send({
-            products: result.slice(start, end),
-            page_count,
-            total_count: result.length,
-            currentPage: requestPage,
-        });
+        res.send(respones);
     } catch (error) {
         res.status(500).send(error);
     }
