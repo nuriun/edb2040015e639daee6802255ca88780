@@ -28,9 +28,11 @@
     position: relative;
     border: 2px solid $skis;
     overflow: hidden;
+    -webkit-overflow: hidden;
     transition: all 0.6s ease;
     padding: 0;
     margin: 0;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 
     &:hover {
         background-color: lighten($skis, 10);
