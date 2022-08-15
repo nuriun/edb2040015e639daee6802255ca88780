@@ -8,7 +8,6 @@ export const config = {
 };
 
 export default function handler(req, res) {
-    // res.send(dummy);
     httpProxyMiddleware(req, res, {
         target: process.env.BACKEND_URL,
         headers: {

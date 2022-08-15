@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
     Product,
     GetProductResponse,
@@ -9,9 +10,23 @@ export const GET_PRODUCTS_URL_PATH = '/products';
 export const SEARCH_PRODUCTS_URL_PATH = '/products/search';
 
 export async function getProducts(): Promise<Product[]> {
-    var { products }: GetProductResponse = (
-        await http.get(GET_PRODUCTS_URL_PATH)
-    ).data;
+    const isServer = typeof window === 'undefined';
+    let url;
+    let options = {};
+
+    if (isServer) {
+        url = `${process.env.BACKEND_URL}/${GET_PRODUCTS_URL_PATH}`;
+        options = {
+            headers: {
+                'X-Access-Token': process.env.ACCESS_TOKEN,
+            },
+        };
+    } else {
+        url = `/api/${GET_PRODUCTS_URL_PATH}`;
+    }
+
+    var { products } = (await axios.get(url, options)).data;
+
     return products;
 }
 
