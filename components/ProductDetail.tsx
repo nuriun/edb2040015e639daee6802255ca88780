@@ -18,6 +18,8 @@ type ProductDetailProps = {
 
 const paraghCleaner = /(<p(\s|\S)*?<\/p>)/g;
 
+const mainBlock = 'product-detail';
+
 const ProductDetail = ({
     product,
     variant,
@@ -25,6 +27,11 @@ const ProductDetail = ({
     image,
 }: ProductDetailProps) => {
     const router = useRouter();
+
+    const category = product.product_type
+        .toLocaleLowerCase()
+        .replaceAll(' ', '-');
+
     const handleSelectOnChange = (event, newValue, newValuesOption) => {
         let currentOptions = product.options.reduce((acc, current) => {
             let optionName = 'option' + current.position;
@@ -81,25 +88,19 @@ const ProductDetail = ({
                                     height: 1800,
                                 },
                             }}
-                            imageClassName={styles['product-detail__image']}
+                            imageClassName={styles[`${mainBlock}__image`]}
                             enlargedImageContainerClassName={
-                                styles[
-                                    'product-detail__enlarged_image_container'
-                                ]
+                                styles[`${mainBlock}__enlarged_image_container`]
                             }
                         />
                     </div>
                 </div>
                 <div className='col-sm-12 col-md-6 col-lg-8 ps-0 ps-md-5'>
-                    <h1 className={styles['product-detail__title']}>{title}</h1>
+                    <h1 className={styles[`${mainBlock}__title`]}>{title}</h1>
                     <p
                         className={classNames(
-                            styles['product-detail__price'],
-                            styles[
-                                product.product_type
-                                    .toLocaleLowerCase()
-                                    .replaceAll(' ', '-')
-                            ],
+                            styles[`${mainBlock}__price`],
+                            styles[`${mainBlock}__price--${category}`],
                         )}
                     >
                         <label htmlFor=''>Price</label>
@@ -111,10 +112,7 @@ const ProductDetail = ({
                         </span>
                     </p>
                     {product.options.map((op, i) => (
-                        <div
-                            key={i}
-                            className={styles['product-detail__select']}
-                        >
+                        <div key={i} className={styles[`${mainBlock}__select`]}>
                             <Dropdown
                                 label={op.name}
                                 items={op.values}
