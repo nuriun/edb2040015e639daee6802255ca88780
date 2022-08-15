@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/bootstrap-utilities.scss";
+
+@mixin responsive-content-gap {
+  
+  @include make-container(60px);
+  @include media-breakpoint-up(xl) {
+    max-width: 1200px;
+  }
+  @content;
+}

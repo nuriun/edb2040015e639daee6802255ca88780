@@ -1,0 +1,10 @@
+@import '../colors.scss';
+
+.product-list {
+    &__category-header {
+        & a {
+            color: darken($base-color, 50);
+            text-decoration: none;
+        }
+    }
+}

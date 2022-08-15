@@ -1,0 +1,33 @@
+@import '../colors.scss';
+
+.pagination {
+    list-style: none;
+    margin: 15px 0;
+    padding: 0;
+    display: flex;
+
+    & li {
+        margin: 10px;
+        & a {
+            text-decoration: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid $base-color;
+            display: block;
+            color: darken($base-color, 30);
+        }
+
+        &[class='selected'] {
+            & > a {
+                border-color: darken($base-color, 30);
+            }
+        }
+
+        &[class*='disabled'] {
+            & > a {
+                opacity: 0.3;
+            }
+        }
+    }
+}

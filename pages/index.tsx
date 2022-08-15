@@ -1,15 +1,36 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { getProducts } from '@/services/productServices';
+import Logo from '@/components/Logo';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+import styles from '../styles/pages/home.module.scss';
 
-export default IndexPage
+const Home = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetchProducts();
+
+        async function fetchProducts() {
+            const response = await getProducts();
+            setProducts(response);
+        }
+    }, []);
+
+    return (
+        <div className={styles.container}>
+            <div className={styles.wrapper}>
+                <Logo initAnimation />
+                <h1 className={styles.title}>
+                    Welcome <br /> on board!
+                </h1>
+            </div>
+
+            <Link href='/products'>
+                <a>Take a look at all products!</a>
+            </Link>
+        </div>
+    );
+};
+
+export default Home;

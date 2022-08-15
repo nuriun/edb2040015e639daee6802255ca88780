@@ -1,0 +1,17 @@
+@keyframes fade-down {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@mixin fade-in-down {
+    opacity: 0;
+    transform: translateY(-100%);
+    animation: fade-down 0.3s ease forwards;
+    @content;
+}

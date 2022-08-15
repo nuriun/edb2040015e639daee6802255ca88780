@@ -1,0 +1,7 @@
+@import '../colors.scss';
+@import '../mixins.scss';
+
+.content {
+    @include responsive-content-gap();
+    min-height: 100vh;
+}

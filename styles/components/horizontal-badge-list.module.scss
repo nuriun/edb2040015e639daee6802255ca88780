@@ -1,0 +1,79 @@
+@import '../colors.scss';
+@import '~bootstrap/scss/bootstrap-utilities.scss';
+
+.horizontal-badge-list {
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+
+    @include media-breakpoint-down(md) {
+        margin-left: -30px;
+        margin-right: -30px;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        @include media-breakpoint-down(md) {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+
+    &__badge {
+        height: 30px;
+        background-color: darken($base-color, 30);
+        padding: 0 10px;
+        border-radius: 15px;
+
+        color: #fff;
+        vertical-align: middle;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        &.skis {
+            background-color: $skis;
+        }
+
+        &.helmets {
+            background-color: $helmets;
+        }
+
+        &.snowboard-boots {
+            background-color: $snowboard-boots;
+        }
+
+        &.beanies {
+            background-color: $beanies;
+        }
+
+        &.jackets {
+            background-color: $jackets;
+        }
+
+        &.snowboards {
+            background-color: $snowboards;
+        }
+
+        &.gloves {
+            background-color: $gloves;
+        }
+
+        &.ski-bindings {
+            background-color: $ski-bindings;
+        }
+
+        &.snowboard-bindings {
+            background-color: $snowboard-bindings;
+        }
+    }
+}

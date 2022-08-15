@@ -1,0 +1,16 @@
+@import '~normalize.css/normalize.css';
+
+$include-column-box-sizing: true !default;
+
+@import '~bootstrap/scss/bootstrap-grid.scss';
+@import '~bootstrap/scss/bootstrap-utilities.scss';
+@import './colors.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: lighten($base-color, 15%);
+}

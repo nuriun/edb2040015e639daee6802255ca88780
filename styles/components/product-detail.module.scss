@@ -1,0 +1,111 @@
+@import '../colors.scss';
+@import '~bootstrap/scss/bootstrap-utilities.scss';
+
+.product-detail {
+    &__title {
+        margin-top: 5px;
+        color: darken($base-color, 40);
+    }
+
+    &__select {
+        margin-bottom: 20px;
+    }
+
+    &__price {
+        font-weight: 500;
+        align-items: stretch;
+        display: flex;
+
+        height: 50px;
+        color: $background;
+        margin: 0;
+
+        border-radius: 40px;
+        background-color: $background;
+        margin-bottom: 20px;
+
+        & > label {
+            border-right: 2px solid $background;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            min-width: 100px;
+        }
+
+        & > span {
+            padding: 0px 20px;
+            font-size: 1.5em;
+            line-height: 1;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+            & small {
+                font-size: 60%;
+                margin-right: 5px;
+                text-decoration: line-through;
+                opacity: 0.8;
+                display: block;
+            }
+        }
+
+        &.skis {
+            background-color: $skis;
+        }
+
+        &.helmets {
+            background-color: $helmets;
+        }
+
+        &.snowboard-boots {
+            background-color: $snowboard-boots;
+        }
+
+        &.beanies {
+            background-color: $beanies;
+        }
+
+        &.jackets {
+            background-color: $jackets;
+        }
+
+        &.snowboards {
+            background-color: $snowboards;
+        }
+
+        &.gloves {
+            background-color: $gloves;
+        }
+
+        &.ski-bindings {
+            background-color: $ski-bindings;
+        }
+
+        &.snowboard-bindings {
+            background-color: $snowboard-bindings;
+        }
+    }
+
+    &__image {
+        border-radius: 15px;
+    }
+
+    &__enlarged_image_container {
+        border-radius: 15px;
+        z-index: 1090;
+        @include media-breakpoint-down(lg) {
+            left: 0px !important;
+            top: 0px !important;
+            margin-left: 0px !important;
+        }
+    }
+
+    @include media-breakpoint-down(lg) {
+        &__price {
+            height: 40px;
+            & > span {
+                font-size: 1em;
+            }
+        }
+    }
+}

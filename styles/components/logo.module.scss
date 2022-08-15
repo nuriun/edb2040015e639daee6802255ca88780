@@ -1,0 +1,80 @@
+@import '../colors.scss';
+
+@keyframes mountain-first {
+    from {
+        transform: rotate(45deg) translate(25%, 25%);
+    }
+    to {
+        transform: rotate(45deg) translate(0px, 0px);
+    }
+}
+
+@keyframes mountain-second {
+    from {
+        transform: rotate(45deg) translate(25%, 25%);
+    }
+    to {
+        transform: rotate(45deg) translate(0px, 0px);
+    }
+}
+
+.logo {
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: $skis;
+    display: block;
+    position: relative;
+    border: 2px solid $skis;
+    overflow: hidden;
+    transition: all 0.6s ease;
+    padding: 0;
+    margin: 0;
+
+    &:hover {
+        background-color: lighten($skis, 10);
+        border-color: lighten($skis, 10);
+        &:after {
+            transform: rotate(45deg) translateY(5%);
+        }
+        &:before {
+            transform: rotate(45deg) translate(8%);
+        }
+    }
+    &:after,
+    &:before {
+        position: absolute;
+        display: block;
+        content: '';
+        background-color: #fff;
+        transition: transform 0.6s ease;
+    }
+    &:after {
+        width: 80%;
+        height: 80%;
+        transform: rotate(45deg);
+        left: -3%;
+        bottom: -26%;
+        box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+    }
+    &:before {
+        width: 45%;
+        height: 60%;
+        transform: rotate(45deg);
+        left: 49%;
+        bottom: -12%;
+        opacity: 0.8;
+    }
+
+    &--init-animation {
+        &:after {
+            transform: rotate(45deg) translate(25%, 25%);
+            animation: mountain-first 1s ease 0.3s forwards;
+        }
+        &:before {
+            transform: rotate(45deg) translate(25%, 25%);
+            animation: mountain-second 1.2s ease 0.3s forwards;
+        }
+    }
+}

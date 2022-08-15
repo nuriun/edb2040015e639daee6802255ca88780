@@ -1,13 +1,13 @@
 import Layout from '@/components/Layout';
 import { useRouter } from 'next/router';
 
-const AboutPage = () => {
+const BlogPage = () => {
     const router = useRouter();
     const query = router.query.q;
     return (
-        <Layout title='About'>
+        <Layout title='Blog'>
             <div>
-                <h1>About</h1>
+                <h1>Blog</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Voluptatibus tempore earum impedit eos harum minus, nemo
@@ -25,4 +25,4 @@ const AboutPage = () => {
     );
 };
 
-export default AboutPage;
+export default BlogPage;
